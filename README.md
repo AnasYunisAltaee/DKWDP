@@ -18,7 +18,7 @@ Dieses Projekt bietet eine benutzerfreundliche Lernplattform mit verschiedenen L
 1. Repository klonen:
 ```bash
 git clone https://github.com/AnasYunisAltaee/DKWDP.git
-cd der-kleine-weg-der-programmierung
+
 ```
 
 2. Abhängigkeiten installieren:
