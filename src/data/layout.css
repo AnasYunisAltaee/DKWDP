@@ -1,0 +1,632 @@
+:root {
+  --primary: #66B2FF;            /* helleres, kinderfreundliches Blau */
+  --primary-light: #B3D7FF;      /* helleres Blau-Light */
+  --secondary: #3A3F58;          /* dunkelblau/grau */
+  --accent: #8EA8C3;             /* pastellblau */
+  --light: #E9F0ED;              /* sehr helles grün */
+  --success: #A7C4A0;            /* sanftes grün */
+  --error: #D64550;
+  --text: #2F2F2F;
+  --border: #CBDDD1;
+  --background: #FFFFFF;
+  --border-radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(47, 47, 47, 0.08);
+  --shadow-md: 0 2px 6px rgba(47, 47, 47, 0.1);
+  --transition: all 0.2s ease;
+}
+
+.banner-button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: var(--primary);
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-button:hover .header-image {
+  transform: scale(0.99);
+  transition: transform 0.2s ease;
+}
+
+.beltButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.header-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.popup-menu {
+  position: absolute;
+  top: 95%;
+  right: 1%;
+  width: 300px;
+  height: 200px;
+  background-color: var(--secondary);
+  border: 2px solid #aaa;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.image-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.image-buttons img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.image-buttons img:hover {
+  transform: scale(1.1);
+}
+
+/* Container für Pinguin + Einstellungen */
+.mascot-and-settings-container {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 2rem; 
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  z-index: 100;
+}
+
+/* Originales CSS */
+body {
+  margin: 0;
+  font-family: "Baloo 2", -apple-system, sans-serif;
+  font-weight: 400;
+  background-color: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+main {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  position: relative;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  width: 40%;
+  min-width: 300px;
+  background: var(--background);
+  padding: 1.5rem;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  position: relative;
+  background-image: linear-gradient(to bottom, var(--background), var(--light));
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--success));
+}
+
+.resizer {
+  width: 4px;
+  background: var(--border);
+  cursor: col-resize;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.resizer:hover {
+  background: var(--primary);
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--secondary);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.coding-area {
+  width: 60%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background-color: var(--light);
+  background-image: linear-gradient(to bottom, var(--light), var(--accent));
+}
+
+.editor-container {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--secondary);
+  margin: 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--secondary);
+  margin: 0 0 0.5rem 0;
+}
+
+.output-container {
+  margin-top: 1.5rem;
+  background: var(--background);
+  background-color: rgb(240, 240, 240);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border-left: 3px solid var(--border);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+/* .output-container.happy {
+  border-left-color: var(--success);
+  background-color: rgba(191, 215, 181, 0.05);
+}
+
+.output-container.think {
+  border-left-color: var(--secondary);
+  background-color: rgba(65, 60, 88, 0.03);
+}
+
+.output-container.sad {
+  border-left-color: var(--error);
+  background-color: rgba(214, 69, 80, 0.03);
+}
+  */
+.output-container.happy,
+.output-container.think,
+.output-container.sad {
+  border-left-color: #ccc;
+  background-color: rgb(240, 240, 240);
+}
+
+/* .output-container .output {
+  background-color: white !important;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+*/ 
+.output {
+  white-space: pre-wrap;
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  background: rgba(163, 196, 188, 0.05);
+  padding: 0.75rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+}
+
+/* Maskottchen */
+.mascot-container {
+  width: 120px;
+  transition: var(--transition);
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.mascot {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease, filter 0.2s ease;
+  cursor: pointer;
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+.mascot:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  animation-play-state: paused;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px 2px #00f7ff;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px #00f7ff;
+    transform: scale(1.1);
+  }
+}
+
+/* Sprechblase */
+.speech-bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--background);
+  border-radius: var(--border-radius);
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  text-align: center;
+  border: 1px solid var(--success);
+  color: var(--text);
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--background) transparent transparent transparent;
+}
+
+/* Stile für den dezenten Navigationsbalken */
+ /* .navigation-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(58, 63, 88, 0.9); 
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  gap: 1rem;
+  z-index: 90;
+  backdrop-filter: blur(5px);
+  border-top: 1px solid var(--border);
+}  */
+
+.nav-button {
+  font-size: 1.5rem;
+  padding: 0.7rem 1.2rem;
+  margin: 0 0.5rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #00a2ff; 
+}
+
+.nav-button .icon {
+  font-size: 1.4rem;
+}
+
+.nav-button .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--secondary);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--border-radius);
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.nav-button:hover .tooltip {
+  opacity: 1;
+}
+
+.nav-button.next-level {
+  background: var(--success);
+}
+
+.nav-button.next-level:hover {
+  background: var(--primary);
+}
+
+.nav-button.next-level.disabled {
+  background-color: #cccccc !important; 
+  color: #666666 !important; 
+  cursor: not-allowed !important; 
+  opacity: 0.6; 
+}
+
+.nav-button.next-level.disabled:hover {
+  background-color: #cccccc !important; 
+  transform: none !important; 
+  box-shadow: none !important;
+}
+
+.nav-button.next-level.disabled .tooltip {
+  display: none; 
+}
+
+.nav-button.next-level.enabled {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-button.next-level.enabled:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+main button {
+  padding: 0.75rem 1.5rem;
+  background-color: #66B2FF; 
+  color: white;
+  border: none;
+  border-radius: 12px; /* runder */
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(102, 178, 255, 0.7);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+main button:hover {
+  background-color: #00a2ff; 
+  box-shadow: 0 6px 12px rgba(62, 153, 255, 0.8);
+  transform: translateY(-3px) scale(1.05);
+}
+
+main button:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 3px 6px rgba(62, 153, 255, 0.5);
+}
+
+/* Stärker pulsierende Animation für Buttons nach Levelabschluss */
+main button.pulse {
+  animation: pulse-strong-blue 1s infinite;
+}
+
+@keyframes pulse-strong-blue {
+  0%, 100% {
+    box-shadow: 0 0 12px #66B2FF;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px #66B2FF;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes blink-glow {
+  0%, 100% {
+    background-color: white;
+    box-shadow: 0 0 5px #4caf50;
+    transform: scale(1);
+  }
+  50% {
+    background-color: #eaffea;
+    box-shadow: 0 0 20px #4caf50;
+    transform: scale(1.1);
+  }
+}
+
+.level-complete-hint {
+  background-color: #e0ffe0;
+  border-left: 4px solid #4caf50;
+  padding: 1em;
+  margin: 1em auto;
+  font-size: 1rem;
+  border-radius: 8px;
+  max-width: 600px;
+  text-align: center;
+  color: #2e7d32;
+  font-weight: 600;
+  box-shadow: 0 0 10px #4caf50;
+  animation: blink-glow 2s infinite;
+}
+
+.blinking-button {
+  animation: blink-glow 1.5s infinite;
+}
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+.icon {
+  font-size: 1.6rem;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 125%;
+  background-color: #66B2FF;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-button:hover .tooltip {
+  opacity: 1;
+}
+
+.bottom-left-buttons {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: row; /* ist Standard, aber zur Sicherheit */
+  gap: 0.5rem; /* kleiner Abstand zwischen den Buttons */
+  z-index: 100;
+}
+.canvas{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.run-button {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 0.9rem 1.7rem;
+  background-color: #e62424; 
+
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(255, 102, 102, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  
+}
+
+.run-button:hover {
+  background-color: #ff0000; 
+  box-shadow: 0 6px 12px rgba(62, 153, 255, 0.8);
+  transform: translateX(-50%) translateY(-3px) scale(1.05);
+}
+
+.run-button:active {
+  transform: translateX(-50%) translateY(-1px) scale(0.98);
+  box-shadow: 0 3px 6px rgba(62, 153, 255, 0.5);
+}
+
+
+.weiter-button {
+  background-color: #66B2FF; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.weiter-button:hover {
+  background-color: #00a2ff; 
+}
+
+.zurueck-button {
+  background-color: #66B2FF; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.zurueck-button:hover {
+  background-color: #00a2ff; 
+}
+
+
+
+
+
